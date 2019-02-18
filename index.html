@@ -1,2 +1,63 @@
-hello
-hello again
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Pomodoro Clock</title>
+  <meta name="description" content="Pomodoro Clock">
+  <meta name="author" content="James">
+
+  <style>
+    .breaksession {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Pomodoro Clock</h1>
+  <h3>by James Levine</h3>
+  <h4>Break Length</h4>
+  <ul class="breaksession">
+  <li><button onclick="upBreak()">▲</button></li>
+  <li id="currentBreak">5</li>
+  <li><button onclick="downBreak()">▼</button></li>
+  </ul>
+  <h4>Session Length</h4>
+  <ul class="breaksession">
+    <li><button onclick="upSession()">▲</button></li>
+    <li id="currentSession">5</li>
+    <li><button onclick="downSession()">▼</button></li>
+  </ul>
+  <h4>Time Remaining</h4>
+  <h4 id="countdown">00:00</h4>
+  <script>
+function upBreak() {
+  let current = document.getElementById("currentBreak").innerHTML;
+  console.log(current);
+  document.getElementById("currentBreak").innerHTML = Number(current)+1;
+}
+function downBreak() {
+  let current = document.getElementById("currentBreak").innerHTML;
+  if (current > 0) {
+  console.log(current);
+  document.getElementById("currentBreak").innerHTML = Number(current)-1;
+}
+}
+function upSession() {
+  let current = document.getElementById("currentSession").innerHTML;
+  console.log(current);
+  document.getElementById("currentSession").innerHTML = Number(current)+1;
+}
+function downSession() {
+  let current = document.getElementById("currentSession").innerHTML;
+  if (current > 0) {
+  console.log(current);
+  document.getElementById("currentSession").innerHTML = Number(current)-1;
+}
+}
+
+</script>
+</body>
+</html>

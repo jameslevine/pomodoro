@@ -31,8 +31,19 @@
     <li><button onclick="downSession()">▼</button></li>
   </ul>
   <h4>Time Remaining</h4>
-  <h4 id="countdown">00:00</h4>
+  <input id="timeRemaining" type="text" name="" value="00:00">
+  <button type="button" name="button">Start</button>
   <script>
+
+let timeRemaining = document.getElementById("timeRemaining").value;
+console.log(timeRemaining);
+
+function pushTime(hours, minutes) {
+  timeRemaining.split(":");
+  timeRemaining[0] = hours
+  document.getElementById("timeRemaining").value
+}
+
 function upBreak() {
   let current = document.getElementById("currentBreak").innerHTML;
   console.log(current);

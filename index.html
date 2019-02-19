@@ -32,41 +32,104 @@
   </ul>
   <h4>Time Remaining</h4>
   <input id="timeRemaining" type="text" name="" value="00:00">
-  <button type="button" name="button">Start</button>
+  <input id="breakTimeRemaining" type="text" name="" value="00:00">
+  <button type="button" name="button" onclick="startCountdown()">Start</button>
   <script>
 
 let timeRemaining = document.getElementById("timeRemaining").value;
-console.log(timeRemaining);
-
-function pushTime(hours, minutes) {
-  timeRemaining.split(":");
-  timeRemaining[0] = hours
-  document.getElementById("timeRemaining").value
-}
+let breakTime = document.getElementById("breakTimeRemaining").value;
 
 function upBreak() {
   let current = document.getElementById("currentBreak").innerHTML;
-  console.log(current);
-  document.getElementById("currentBreak").innerHTML = Number(current)+1;
+  let newCurrent = Number(current)+1;
+  document.getElementById("currentBreak").innerHTML = newCurrent;
+  if (newCurrent > 0 && newCurrent < 10) {
+  document.getElementById("currentBreak").innerHTML = newCurrent;
+  document.getElementById("breakTimeRemaining").value = "0" + newCurrent + ":00";
+} else if (newCurrent >= 10) {
+  document.getElementById("currentBreak").innerHTML = newCurrent;
+  document.getElementById("breakTimeRemaining").value = newCurrent + ":00";
+}
 }
 function downBreak() {
   let current = document.getElementById("currentBreak").innerHTML;
-  if (current > 0) {
-  console.log(current);
-  document.getElementById("currentBreak").innerHTML = Number(current)-1;
+  let newCurrent = Number(current)-1;
+  if (newCurrent > 0 && newCurrent < 10) {
+  document.getElementById("currentBreak").innerHTML = newCurrent;
+  document.getElementById("breakTimeRemaining").value = "0" + newCurrent + ":00";
+} else if (newCurrent >= 10) {
+  document.getElementById("currentBreak").innerHTML = newCurrent;
+  document.getElementById("breakTimeRemaining").value = newCurrent + ":00";
 }
 }
 function upSession() {
   let current = document.getElementById("currentSession").innerHTML;
-  console.log(current);
-  document.getElementById("currentSession").innerHTML = Number(current)+1;
+  let newCurrent = Number(current)+1;
+  if (newCurrent > 0 && newCurrent < 10) {
+  document.getElementById("currentSession").innerHTML = newCurrent;
+  document.getElementById("timeRemaining").value = "0" + newCurrent + ":00";
+} else if (newCurrent >= 10) {
+  document.getElementById("currentSession").innerHTML = newCurrent;
+  document.getElementById("timeRemaining").value = newCurrent + ":00";
+}
 }
 function downSession() {
   let current = document.getElementById("currentSession").innerHTML;
-  if (current > 0) {
-  console.log(current);
-  document.getElementById("currentSession").innerHTML = Number(current)-1;
+  let newCurrent = Number(current)-1;
+  if (newCurrent > 0 && newCurrent < 10) {
+  document.getElementById("currentSession").innerHTML = newCurrent;
+  document.getElementById("timeRemaining").value = "0" + newCurrent + ":00";
+} else if (newCurrent >= 10) {
+  document.getElementById("currentSession").innerHTML = newCurrent;
+  document.getElementById("timeRemaining").value = newCurrent + ":00";
+  }
+  }
+
+function startCountdown() {
+    let sessionTime = document.getElementById("timeRemaining").value;
+    let breakTime = document.getElementById("breakTimeRemaining").value;
+    console.log(sessionTime.split(":"));
+    console.log(breakTime.split(":"));
+    var myVar = setInterval(myTimer, 1000);
+  }
+
+console.log(document.getElementById("currentSession").innerHTML);
+var minutes = document.getElementById("currentSession").innerHTML;
+var minutesSplit = minutes.split(":");
+console.log(minutesSplit[0]);
+var time = 0;
+var timeArr = [minutesSplit[0], ":", 00];
+//console.log(minutesSplit[0]);
+//console.log(timeArr);
+  function myTimer() {
+    if (time > 0) {
+    time--;
+    timeArr[2]--;
+    addZero();
+    breakCountdown();
+    console.log(timeArr.join(""));
+  } else if (time === 0) {
+    time = 59;
+    timeArr[2] = 59;
+    timeArr[0]--;
+    addZero()
+    breakCountdown();
+    console.log(timeArr.join(""));
+  }
+  }
+
+function addZero() {
+  //console.log(timeArr);
+  if (timeArr[0] < 10) {
+    //console.log(timeArr.shift("0"));
+  }
 }
+
+function breakCountdown() {
+  //console.log(timeArr.join(""));
+  if (timeArr.join("") === "0:0" || timeArr.join("") === "00:00") {
+    console.log("It's at zero!");
+  }
 }
 
 </script>

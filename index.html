@@ -99,8 +99,12 @@ var minutesSplit = minutes.split(":");
 var time = 0;
 var minuteNum = "";
 var timeArr = [minutesSplit[0], ":", 00];
+var endSessionTime = true;
   function myTimer() {
     //console.log(currentTime);
+    if (endSessionTime === false){
+      return;
+    }
     if (time > 0) {
     time--;
     timeArr[2]--;
@@ -121,8 +125,51 @@ function breakCountdown() {
   //console.log(timeArr.join(""));
   if (timeArr.join("") === "0:0" || timeArr.join("") === "00:00") {
     console.log("It's at zero!");
+    endSessionTime = false;
+    startBreakCountdown();
   }
 }
+
+function startBreakCountdown() {
+    let currentBreakTime = document.getElementById("breakTimeRemaining").value;
+    let currentBreakTimeSplit = currentBreakTime.split("");
+    console.log(currentBreakTimeSplit[0].concat(currentBreakTimeSplit[1]));
+    let minuteBreakCount = currentBreakTimeSplit[0].concat(currentBreakTimeSplit[1]);
+    console.log(minuteBreakCount);
+    timeBreakArr[0] = minuteBreakCount;
+    var myBreakVar = setInterval(myBreakTimer, 1000);
+  }
+
+  var minutesBreak = document.getElementById("currentBreak").innerHTML;
+  var minutesBreakSplit = minutes.split(":");
+  var timeBreak = 0;
+  var minuteNum = "";
+  var timeBreakArr = [minutesSplit[0], ":", 00];
+
+  function myBreakTimer() {
+    //console.log(currentTime);
+    if (timeBreak > 0) {
+    timeBreak--;
+    timeBreakArr[2]--;
+    breakTimeEndCountdown();
+    document.getElementById("breakTimeRemaining").value = timeBreakArr.join("");
+    console.log(timeBreakArr.join(""));
+  } else if (timeBreak === 0) {
+    timeBreak = 59;
+    timeBreakArr[2] = 59;
+    timeBreakArr[0]--;
+    breakTimeEndCountdown();
+    console.log(timeBreakArr.join(""));
+    document.getElementById("breakTimeRemaining").value = timeBreakArr.join("");
+  }
+  }
+
+  function breakTimeEndCountdown() {
+    //console.log(timeArr.join(""));
+    if (timeBreakArr.join("") === "0:0" || timeBreakArr.join("") === "00:00") {
+      console.log("It's at zero!");
+    }
+  }
 
 </script>
 </body>

@@ -36,8 +36,7 @@
   <button type="button" name="button" onclick="startCountdown()">Start</button>
   <script>
 
-let timeRemaining = document.getElementById("timeRemaining").value;
-let breakTime = document.getElementById("breakTimeRemaining").value;
+let arr = [];
 
 function upBreak() {
   let current = document.getElementById("currentBreak").innerHTML;
@@ -86,44 +85,37 @@ function downSession() {
   }
 
 function startCountdown() {
-    let sessionTime = document.getElementById("timeRemaining").value;
-    let breakTime = document.getElementById("breakTimeRemaining").value;
-    console.log(sessionTime.split(":"));
-    console.log(breakTime.split(":"));
+    let currentTime = document.getElementById("timeRemaining").value;
+    let currentTimeSplit = currentTime.split("");
+    console.log(currentTimeSplit[0].concat(currentTimeSplit[1]));
+    let minuteCount = currentTimeSplit[0].concat(currentTimeSplit[1]);
+    console.log(minuteCount);
+    timeArr[0] = minuteCount;
     var myVar = setInterval(myTimer, 1000);
   }
 
-console.log(document.getElementById("currentSession").innerHTML);
 var minutes = document.getElementById("currentSession").innerHTML;
 var minutesSplit = minutes.split(":");
-console.log(minutesSplit[0]);
 var time = 0;
+var minuteNum = "";
 var timeArr = [minutesSplit[0], ":", 00];
-//console.log(minutesSplit[0]);
-//console.log(timeArr);
   function myTimer() {
+    //console.log(currentTime);
     if (time > 0) {
     time--;
     timeArr[2]--;
-    addZero();
     breakCountdown();
+    document.getElementById("timeRemaining").value = timeArr.join("");
     console.log(timeArr.join(""));
   } else if (time === 0) {
     time = 59;
     timeArr[2] = 59;
     timeArr[0]--;
-    addZero()
     breakCountdown();
     console.log(timeArr.join(""));
+    document.getElementById("timeRemaining").value = timeArr.join("");
   }
   }
-
-function addZero() {
-  //console.log(timeArr);
-  if (timeArr[0] < 10) {
-    //console.log(timeArr.shift("0"));
-  }
-}
 
 function breakCountdown() {
   //console.log(timeArr.join(""));
